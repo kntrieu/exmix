@@ -30,7 +30,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            EXMIX - Trộn đề online
+            EXMIX
           </Typography>
           <Button color="inherit">Đăng Nhập</Button>
         </Toolbar>

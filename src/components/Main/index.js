@@ -5,7 +5,7 @@ import Wizart from '../Wizart';
 
 const Main = () => {
     return (
-        <Box>
+        <Box height={100} id="wizart-container">
             <ButtonAppBar/>
             <div id="main-content">
                 <Wizart />
