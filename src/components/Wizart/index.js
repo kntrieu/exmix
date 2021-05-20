@@ -8,6 +8,7 @@ import {
     setStepToCurrentStep
 } from '../../actions/Wizart';
 import { NavigateNext, NavigateBefore, Print} from '@material-ui/icons';
+import { printExamDetails } from '../../utils/documentHelper';
 
 const Wizart = () => {
     const wizartSteps = useSelector( state => state.WizartReducer);
@@ -75,6 +76,10 @@ const WizartStep = ({
         setCurrentStep(prevStepId);
     }
 
+    const onClickPrint = () => {
+        printExamDetails();
+    }
+
     return (
         <Grid
             container
@@ -90,7 +95,8 @@ const WizartStep = ({
                     <WizartControl 
                         stepId={id} 
                         onClickNext={onClickNext} 
-                        onClickPrev={onClickPrev} 
+                        onClickPrev={onClickPrev}
+                        onClickPrint={onClickPrint}
                         wizartLength={wizartLength}  />
                 </FormControl>
             </Box>
@@ -98,7 +104,7 @@ const WizartStep = ({
     )
 }
 
-const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
+const WizartControl = ({stepId, onClickNext, onClickPrev, onClickPrint, wizartLength}) => {
     const nextButton = stepId >= 0 && stepId < wizartLength - 1 ? 
         <Grid item>
             <Button 
@@ -124,7 +130,7 @@ const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
             <Button 
                 variant="contained" 
                 color="secondary" 
-                onClick={() => onClickPrev(stepId)} 
+                onClick={() => onClickPrint()} 
                 endIcon={<Print />}>
                 In Thử
             </Button>

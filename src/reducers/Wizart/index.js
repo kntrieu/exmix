@@ -90,6 +90,7 @@ const WizartReducer = (state = initialState, action) => {
 
             setWizartData(state);
             return state;
+
         default:
             setWizartData(state);
             return state;
