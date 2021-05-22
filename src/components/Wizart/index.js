@@ -8,8 +8,7 @@ import {
     setStepToCurrentStep
 } from '../../actions/Wizart';
 import { NavigateNext, NavigateBefore, Print} from '@material-ui/icons';
-import { printExamDetails } from '../../utils/documentHelper';
-
+import { Link } from 'react-router-dom'
 const Wizart = () => {
     const wizartSteps = useSelector( state => state.WizartReducer);
     const currentStepId = wizartSteps.find(item => item.isCurrentStep === true);
@@ -76,13 +75,8 @@ const WizartStep = ({
         setCurrentStep(prevStepId);
     }
 
-    const onClickPrint = () => {
-        printExamDetails();
-    }
-
     return (
         <Grid
-            container
             direction="row"
             justify="center"
             alignItems="center"
@@ -96,7 +90,6 @@ const WizartStep = ({
                         stepId={id} 
                         onClickNext={onClickNext} 
                         onClickPrev={onClickPrev}
-                        onClickPrint={onClickPrint}
                         wizartLength={wizartLength}  />
                 </FormControl>
             </Box>
@@ -104,39 +97,47 @@ const WizartStep = ({
     )
 }
 
-const WizartControl = ({stepId, onClickNext, onClickPrev, onClickPrint, wizartLength}) => {
+const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
     const nextButton = stepId >= 0 && stepId < wizartLength - 1 ? 
         <Grid item>
-            <Button 
-                variant="contained"
-                color="primary"
-                onClick={() => onClickNext(stepId)}
-                endIcon={<NavigateNext/>} >
-                Tiếp
-            </Button>
+            <FormControl margin="normal" fullWidth={true}>
+                <Button 
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    onClick={() => onClickNext(stepId)}
+                    endIcon={<NavigateNext/>} >
+                    Tiếp
+                </Button>
+            </FormControl>
         </Grid> : null;
     const previousButton = stepId > 0 ? 
         <Grid item>
-            <Button 
-                variant="contained" 
-                color="default" 
-                onClick={() => onClickPrev(stepId)} 
-                startIcon={<NavigateBefore/>}>
-                Trở lại
-            </Button>
+            <FormControl margin="normal" fullWidth={true}>
+                <Button 
+                    variant="contained" 
+                    color="default" 
+                    onClick={() => onClickPrev(stepId)} 
+                    startIcon={<NavigateBefore/>}>
+                    Trở lại
+                </Button>
+            </FormControl>
         </Grid> : null;
     const finishButton = stepId === wizartLength - 1 ?
         <Grid item>
-            <Button 
-                variant="contained" 
-                color="secondary" 
-                onClick={() => onClickPrint()} 
-                endIcon={<Print />}>
-                In Thử
-            </Button>
+            <Link to="/addQuestions" style={{ textDecoration: 'none' }}>
+                <FormControl margin="normal" fullWidth={true}>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        endIcon={<Print />}>
+                        Nhập Câu Hỏi
+                    </Button>
+                </FormControl>
+            </Link>
         </Grid> : null;
     const controls = 
-    <Grid container spacing={3} justify="center" alignItems="center">
+    <Grid spacing={3} justify="center" alignItems="center">
         {previousButton}
         {nextButton}
         {finishButton}
