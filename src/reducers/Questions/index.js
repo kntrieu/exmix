@@ -1,37 +1,19 @@
-const initialState = [
-    {
-        id: 0,
-        content: 'Ai đã lãnh đạo của phong trào khởi nghĩa Lam Sơn?',
-        answers: [
-            {
-                id: 'A',
-                content: 'Nguyễn Huệ',
-            },
-            {
-                id: 'B',
-                content: 'Lê Lợi',
-            },
-            {
-                id: 'C',
-                content: 'Đinh Bộ Lĩnh',
-            },
-            {
-                id: 'D',
-                content: 'Trần Quốc Tuấn',
-            }
-        ],
-        correctAnswer: 'B'
-    },
-    
-];
+import { setQuestionData, getQuestionData } from '../../utils/localStorageUtils'; 
+
+const initialState = !getQuestionData() ? [] : getQuestionData();
 
 const QuestionsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_QUESTION':
             const newQuestion = action.data;
             state.push(newQuestion);
+
+            //set to local storage
+            setQuestionData(state);
             return state;
         default:
+            //set to local storage
+            setQuestionData(state);
             return  state;
     }
 }

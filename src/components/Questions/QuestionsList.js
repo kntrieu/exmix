@@ -4,8 +4,7 @@ import {
     Button,
     FormControl
 } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
