@@ -98,8 +98,9 @@ const WizartStep = ({
 }
 
 const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
+    const col = stepId === 0 ? 12 : 6;
     const nextButton = stepId >= 0 && stepId < wizartLength - 1 ? 
-        <Grid item>
+        <Grid item xs={col}>
             <FormControl margin="normal" fullWidth={true}>
                 <Button 
                     variant="contained"
@@ -112,11 +113,12 @@ const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
             </FormControl>
         </Grid> : null;
     const previousButton = stepId > 0 ? 
-        <Grid item>
+        <Grid item xs={col}>
             <FormControl margin="normal" fullWidth={true}>
                 <Button 
                     variant="contained" 
-                    color="default" 
+                    color="primary"
+                    size="large" 
                     onClick={() => onClickPrev(stepId)} 
                     startIcon={<NavigateBefore/>}>
                     Trở lại
@@ -124,12 +126,13 @@ const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
             </FormControl>
         </Grid> : null;
     const finishButton = stepId === wizartLength - 1 ?
-        <Grid item>
-            <Link to="/addQuestions" style={{ textDecoration: 'none' }}>
+        <Grid item xs={col}>
+            <Link to="/danh-sach-cau-hoi" style={{ textDecoration: 'none' }}>
                 <FormControl margin="normal" fullWidth={true}>
                     <Button 
                         variant="contained" 
                         color="primary" 
+                        size="large"
                         endIcon={<Print />}>
                         Nhập Câu Hỏi
                     </Button>
@@ -137,7 +140,7 @@ const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
             </Link>
         </Grid> : null;
     const controls = 
-    <Grid spacing={3} justify="center" alignItems="center">
+    <Grid spacing={3} container spacing="3" direction="row" alignItems="center">
         {previousButton}
         {nextButton}
         {finishButton}

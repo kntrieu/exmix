@@ -4,27 +4,55 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 const AddQuestions = () => {
+    const questions = useSelector(state => state.QuestionsReducer);
+    const nextId = questions.length;
+    const questionObj = {
+        id: nextId,
+        content: '',
+        answers: [
+            {
+                id: 'A',
+                content: '',
+            },
+            {
+                id: 'B',
+                content: '',
+            },
+            {
+                id: 'C',
+                content: '',
+            },
+            {
+                id: 'D',
+                content: '',
+            }
+        ],
+        correctAnswer: null
+    };
+
+    const [questionState, updateQuestion] = useState(questionObj);
+
+    const onChangeQuestionContent = (event) => {
+        const value = event.currentTarget.value;
+        const newQuestion = questionState;
+        newQuestion.content = value;
+        updateQuestion(newQuestion);
+    }
+
+    const onChangeQuestionAnswer = (event, id) => {
+        const value = event.currentTarget.value;
+        
+    }
 
     return (
         <>
             <Box>
-                <Grid direction="row" justify="center" alignItems="center">
+                <Grid>
                     <Grid item>
-                        <QuestionForm />
+                        <QuestionForm questionObj={questionState} onChangeQuestionContent={onChangeQuestionContent} />
                     </Grid>
                 </Grid>
                 <Grid container spacing={3} direction="row" justify="center" alignItems="center">
-                    <Grid item xs={6}>
-                        <Box>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button
-                                    variant="contained"
-                                    color="primary" size="large" >
-                                    Thêm câu hỏi
-                                </Button>
-                            </FormControl>
-                        </Box>
-                    </Grid>
                     <Grid item xs={6}>
                         <Box>
                             <FormControl margin="normal" fullWidth={true}>
@@ -36,62 +64,50 @@ const AddQuestions = () => {
                             </FormControl>
                         </Box>
                     </Grid>
+                    <Grid item xs={6}>
+                        <Box>
+                            <FormControl margin="normal" fullWidth={true}>
+                                <Button
+                                    variant="contained"
+                                    color="secondary" size="large" >
+                                    Hủy bỏ
+                                </Button>
+                            </FormControl>
+                        </Box>
+                    </Grid>
                 </Grid>
             </Box>
         </>
     )
 }
 
-const QuestionForm = () => {
-    const questions = useSelector( state => state.QuestionsReducer);
-    const currentId = questions.length === 0 ? 0 : questions.length;
-    const [questionContent, updateQuestion] = useState('');
-    const [answerA, updateAnswerA] = useState('');
-    const [answerB, updateAnswerB] = useState('');
-    const [answerC, updateAnswerC] = useState('');
-    const [answerD, updateAnswerD] = useState('');
-    // const onChange
-     return (
-         <Box>
-             <FormGroup>
-                <FormControl margin="normal" fullWidth={true}>
-                    <TextField id={currentId} 
-                            value={questionContent} 
-                            label={`Nhập nội dung câu hỏi ${currentId + 1}`}
-                            variant="outlined" />
-                </FormControl>
-             </FormGroup>
-             <FormGroup>
-                 <Grid container spacing="3" direction="row">
-                    <Grid item xs={6}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <TextField variant="outlined" value={answerA} label="Đáp Án A" onChange/>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <TextField variant="outlined" value={answerB} label="Đáp Án B"/>
-                        </FormControl>
-                    </Grid>
-                 </Grid>
-                 <Grid container spacing="3" direction="row">
-                    <Grid item xs={6}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <TextField variant="outlined" value={answerC} label="Đáp Án C"/>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <TextField variant="outlined" value={answerD} label="Đáp Án D"/>
-                        </FormControl>
-                    </Grid>
-                 </Grid>
-             </FormGroup>
-             <FormGroup>
+const QuestionForm = ({questionObj , onChangeQuestionContent}) => {
+    
 
-             </FormGroup>
-         </Box>
-     )
+    return (
+        <Box>
+            <FormGroup>
+                <FormControl margin="normal" fullWidth={true}>
+                    <TextField
+                        label={`Nhập nội dung câu hỏi ${questionObj.id + 1}`}
+                        variant="outlined" onChange={(event) => onChangeQuestionContent(event)} />
+                </FormControl>
+            </FormGroup>
+            <FormGroup>
+                {
+                    questionObj.answers.map(as => (
+                        <Grid container spacing={3} direction="row" alignItems="center" key={as.id}>
+                            <Grid item xs={12}>
+                                <FormControl margin="normal" fullWidth={true}>
+                                    <TextField variant="outlined" label={`Đáp Án ${as.id}`} value={as.content} />
+                                </FormControl>
+                            </Grid>
+                        </Grid>
+                    ))
+                }
+            </FormGroup>
+        </Box>
+    )
 }
 
 
