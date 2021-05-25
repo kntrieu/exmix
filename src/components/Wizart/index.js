@@ -7,7 +7,7 @@ import {
     setStepToNotCurrentStep,
     setStepToCurrentStep
 } from '../../actions/Wizart';
-import { NavigateNext, NavigateBefore, Print} from '@material-ui/icons';
+import { NavigateNext, NavigateBefore} from '@material-ui/icons';
 import { Link } from 'react-router-dom'
 const Wizart = () => {
     const wizartSteps = useSelector( state => state.WizartReducer);
@@ -24,6 +24,7 @@ const Wizart = () => {
                                 title={wizart.title} 
                                 value={wizart.value}
                                 wizartLength={wizartSteps.length}
+                                currentStep={currentStep}
                                 setCurrentStep={setCurrentStep} />
                    }
                    return null;
@@ -133,14 +134,14 @@ const WizartControl = ({stepId, onClickNext, onClickPrev, wizartLength}) => {
                         variant="contained" 
                         color="primary" 
                         size="large"
-                        endIcon={<Print />}>
+                        endIcon={<NavigateNext />}>
                         Nhập Câu Hỏi
                     </Button>
                 </FormControl>
             </Link>
         </Grid> : null;
     const controls = 
-    <Grid spacing={3} container spacing="3" direction="row" alignItems="center">
+    <Grid spacing={3} container direction="row" alignItems="center">
         {previousButton}
         {nextButton}
         {finishButton}

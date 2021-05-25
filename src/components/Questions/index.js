@@ -3,7 +3,6 @@ import {
     FormGroup, 
     FormControl, 
     Box, 
-    TextField, 
     Grid, 
     Button, 
     RadioGroup, 
@@ -15,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addNewQuestion } from '../../actions/Questions';
 import {Link} from 'react-router-dom';
+import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
 
 const AddQuestions = () => {
     const questions = useSelector(state => state.QuestionsReducer);
@@ -40,27 +40,21 @@ const AddQuestions = () => {
                 content: '',
             }
         ],
-        correctAnswer: null
+        correctAnswer: 'A'
     };
 
     const [questionState, updateQuestion] = useState(questionObj);
 
-    const onChangeQuestionContent = (event) => {
-        const value = event.currentTarget.value;
+    const onChangeQuestionContent = (value) => {
         const newQuestion = questionState;
         newQuestion.content = value;
         updateQuestion(newQuestion);
     }
 
-    const onChangeQuestionAnswer = (event, id) => {
-        const value = event.currentTarget.value;
-        const newAnswerValue = {
-            id: id,
-            content: value,
-        };
+    const onChangeQuestionAnswer = (newQuestionAnswers) => {
         const newQuestion = questionState;
 
-        newQuestion.answers[newQuestion.answers.findIndex(item => item.id === id)] = newAnswerValue;
+        newQuestion.answers = newQuestionAnswers;
         updateQuestion(newQuestion);
     }
 
@@ -82,6 +76,7 @@ const AddQuestions = () => {
     return (
         <>
             <Box>
+                <ValidatorForm onSubmit={submitQuestion}>
                 <Grid>
                     <Grid item>
                         <QuestionForm 
@@ -92,7 +87,7 @@ const AddQuestions = () => {
                     <Grid item >
                         <FormControl component="fieldset">
                             <FormLabel component="legend">Chọn đáp án đúng</FormLabel>
-                            <RadioGroup row aria-label="position" name="position" defaultValue="A" onChange={(event) => onChangeRadioGroups(event) }>
+                            <RadioGroup row aria-label="position" name="position" defaultValue={questionObj.correctAnswer} onChange={(event) => onChangeRadioGroups(event) }>
                                 <FormControlLabel value="A" control={<Radio color="primary" />} label="A" />
                                 <FormControlLabel value="B" control={<Radio color="primary" />} label="B" />
                                 <FormControlLabel value="C" control={<Radio color="primary" />} label="C" />
@@ -108,7 +103,7 @@ const AddQuestions = () => {
                                 <Button
                                     variant="contained"
                                     color="primary" size="large"
-                                    onClick={() => submitQuestion()} >
+                                    type="submit" >
                                     Xong
                                 </Button>
                             </FormControl>
@@ -128,33 +123,57 @@ const AddQuestions = () => {
                         </Box>
                     </Grid>
                 </Grid>
+                </ValidatorForm>
             </Box>
         </>
     )
 }
 
 const QuestionForm = ({questionObj , onChangeQuestionContent, onChangeQuestionAnswer}) => {
-    
+    const [questionContent, updateQuestion] = useState(questionObj.content);
+    let answers = [...questionObj.answers];
+    const [questionAnswer, updateQuestionAnswer] = useState(answers);
+    const onChangeContent = (event) => {
+        const value = event.currentTarget.value;
+        updateQuestion(value);
+        onChangeQuestionContent(value);
+    }
+
+    const onChangeAnswer = id => e => {
+        let newArr = [...questionAnswer]; 
+        let index = newArr.findIndex(item => item.id === id);
+        newArr[index].content = e.target.value;
+        updateQuestionAnswer(newArr); 
+        onChangeQuestionAnswer(newArr);
+    }
 
     return (
         <Box>
             <FormGroup>
                 <FormControl margin="normal" fullWidth={true}>
-                    <TextField
+                    <TextValidator
+                        fullWidth
+                        validators={['required']}
+                        errorMessages={['Bạn cần phải nhập nội dung câu hỏi']}
+                        value={questionContent}
                         label={`Nhập nội dung câu hỏi ${questionObj.id + 1}`}
-                        variant="outlined" onChange={(event) => onChangeQuestionContent(event)} />
+                        variant="outlined" onChange={(event) => onChangeContent(event)} />
                 </FormControl>
             </FormGroup>
             <FormGroup>
                 {
-                    questionObj.answers.map(as => (
+                    questionAnswer.map((as, index) => (
                         <Grid container spacing={3} direction="row" alignItems="center" key={as.id}>
                             <Grid item xs={12}>
                                 <FormControl margin="normal" fullWidth={true}>
-                                    <TextField 
+                                    <TextValidator
+                                        fullWidth
+                                        validators={['required']}
+                                        errorMessages={['Bạn cần phải nhập nội dung đáp án']}
+                                        value={as.content}
                                         variant="outlined" 
                                         label={`Đáp Án ${as.id}`} 
-                                        onChange={(event) => onChangeQuestionAnswer(event, as.id)} />
+                                        onChange={onChangeAnswer(as.id)} />
                                 </FormControl>
                             </Grid>
                         </Grid>
