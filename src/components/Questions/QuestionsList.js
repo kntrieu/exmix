@@ -53,9 +53,11 @@ const QuestionsList = () => {
                                         <IconButton aria-label="delete" title="Xóa câu hỏi">
                                             <DeleteIcon fontSize="small" />
                                         </IconButton>
-                                        <IconButton aria-label="edit" title="Sửa câu hỏi">
-                                            <EditIcon fontSize="small" />
-                                        </IconButton>
+                                        <Link to={`/sua-cau-hoi/${question.id}`}>
+                                            <IconButton aria-label="edit" title="Sửa câu hỏi">
+                                                <EditIcon fontSize="small" />
+                                            </IconButton>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}

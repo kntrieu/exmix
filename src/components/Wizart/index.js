@@ -77,11 +77,7 @@ const WizartStep = ({
     }
 
     return (
-        <Grid
-            direction="row"
-            justify="center"
-            alignItems="center"
-        >
+        <Grid>
             <Box>
                 <FormControl margin="normal" fullWidth={true}>
                     <TextField value={inputValue} label={title} onChange={ (event) => onChangeInput(event, id) } />

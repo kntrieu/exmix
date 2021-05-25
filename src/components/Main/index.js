@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import ButtonAppBar from '../AppBar';
 import Wizart from '../Wizart';
-import AddQuestions from '../Questions';
+import QuestionForm from '../Questions';
 import QuestionsList from '../Questions/QuestionsList'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,7 +22,8 @@ const Main = () => {
                 <div id="main-content" className={classes.mainMargin}>
                     <Switch>
                         <Route path="/" exact component={Wizart} />
-                        <Route path="/them-cau-hoi" exact component={AddQuestions} />
+                        <Route path="/them-cau-hoi" exact component={QuestionForm} />
+                        <Route path="/sua-cau-hoi/:questionId" component={QuestionForm}/> 
                         <Route path="/danh-sach-cau-hoi" exact component={QuestionsList} />
                     </Switch>
                 </div>

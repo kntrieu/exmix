@@ -15,10 +15,13 @@ import { useState } from 'react';
 import { addNewQuestion } from '../../actions/Questions';
 import {Link} from 'react-router-dom';
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
+import { useParams } from 'react-router-dom';
 
-const AddQuestions = () => {
+const QuestionForm = () => {
     const questions = useSelector(state => state.QuestionsReducer);
     const nextId = questions.length;
+    const { questionId } = useParams();
+    
     const questionObj = {
         id: nextId,
         content: '',
@@ -79,7 +82,7 @@ const AddQuestions = () => {
                 <ValidatorForm onSubmit={submitQuestion}>
                 <Grid>
                     <Grid item>
-                        <QuestionForm 
+                        <QuestionFormItem 
                             questionObj={questionState} 
                             onChangeQuestionContent={onChangeQuestionContent}
                             onChangeQuestionAnswer={onChangeQuestionAnswer} />
@@ -129,7 +132,7 @@ const AddQuestions = () => {
     )
 }
 
-const QuestionForm = ({questionObj , onChangeQuestionContent, onChangeQuestionAnswer}) => {
+const QuestionFormItem = ({questionObj , onChangeQuestionContent, onChangeQuestionAnswer}) => {
     const [questionContent, updateQuestion] = useState(questionObj.content);
     let answers = [...questionObj.answers];
     const [questionAnswer, updateQuestionAnswer] = useState(answers);
@@ -186,4 +189,4 @@ const QuestionForm = ({questionObj , onChangeQuestionContent, onChangeQuestionAn
 
 
 
-export default AddQuestions;
+export default QuestionForm;
