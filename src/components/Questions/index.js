@@ -12,17 +12,17 @@ import {
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { addNewQuestion } from '../../actions/Questions';
+import { addNewQuestion, updateQuestion as editQuestion } from '../../actions/Questions';
 import {Link} from 'react-router-dom';
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
 import { useParams } from 'react-router-dom';
 
 const QuestionForm = () => {
+    const dispatch = useDispatch();
     const questions = useSelector(state => state.QuestionsReducer);
     const nextId = questions.length;
     const { questionId } = useParams();
-    
-    const questionObj = {
+    const questionObj = !questionId ? {
         id: nextId,
         content: '',
         answers: [
@@ -44,7 +44,8 @@ const QuestionForm = () => {
             }
         ],
         correctAnswer: 'A'
-    };
+    } : questions.find(item => item.id === parseInt(questionId));
+
 
     const [questionState, updateQuestion] = useState(questionObj);
 
@@ -69,10 +70,9 @@ const QuestionForm = () => {
         updateQuestion(newQuestion);
     }
 
-    const dispatch = useDispatch();
-
     const submitQuestion = () => {
-        dispatch(addNewQuestion(questionState));
+        const func = questionId ? editQuestion : addNewQuestion;
+        dispatch(func(questionState));
         window.location.pathname="/danh-sach-cau-hoi";
     }
 
