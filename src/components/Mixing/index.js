@@ -6,20 +6,25 @@ import {
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
+import { updateMixing } from '../../actions/Mixing';
 import LoopIcon from '@material-ui/icons/Loop';
+import {shuffleQuestions} from '../../utils/calculatorHelper';
 
 const Mixing = () => {
     const [numOfCopies, updateNumOfCopies] = useState(3);
     const [copies, updateCopies] = useState([]);
     const questions = useSelector(state => state.QuestionsReducer);
-    const wizartData = useSelector(state => state.WizartReducer);
+    const dispatch = useDispatch();
 
     const onChangeNumOfCopies = (value) => {
         updateNumOfCopies(value);
     }
 
     const onSubmitForm = () => {
-        alert(numOfCopies);
+        const arrayOfCopies = shuffleQuestions(questions, numOfCopies);
+        updateCopies(arrayOfCopies);
+        console.log('-------- Copies -------------\n', arrayOfCopies);
+        dispatch(updateMixing(arrayOfCopies));
     }
 
     return (
