@@ -78,8 +78,6 @@ export const shuffleQuestions = (questions, numberOfCopy) => {
         return ids;
     });
 
-    console.log(copies);
-
     return copies;
 
 }

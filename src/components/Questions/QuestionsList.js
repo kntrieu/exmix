@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     Box,
     Button,
-    FormControl
+    FormControl,
+    Grid
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -18,6 +19,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import LoopIcon from '@material-ui/icons/Loop';
 
 const useStyles = makeStyles({
     table: {
@@ -66,15 +68,30 @@ const QuestionsList = () => {
                 </TableContainer>
             </Box>
             <Box>
-                <Link to="/them-cau-hoi" style={{ textDecoration: 'none' }}>
-                    <FormControl margin="normal" fullWidth={true}>
-                        <Button
-                            variant="contained"
-                            color="primary" size="large" endIcon={<AddBoxIcon />} >
-                            Thêm câu hỏi
-                        </Button>
-                    </FormControl>
-                </Link>
+                <Grid container spacing={3} direction="row" alignItems="center">
+                    <Grid item xs={6}>
+                        <Link to="/them-cau-hoi" style={{ textDecoration: 'none' }}>
+                            <FormControl margin="normal" fullWidth={true}>
+                                <Button
+                                    variant="contained"
+                                    color="primary" size="large" endIcon={<AddBoxIcon />} >
+                                    Thêm câu hỏi
+                                </Button>
+                            </FormControl>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Link to="/tron-cau-hoi" style={{ textDecoration: 'none' }}>
+                            <FormControl margin="normal" fullWidth={true}>
+                                <Button
+                                    variant="contained"
+                                    color="secondary" size="large" endIcon={<LoopIcon />} >
+                                    Trộn câu hỏi
+                                </Button>
+                            </FormControl>
+                        </Link>
+                    </Grid>
+                </Grid>
             </Box>
         </>
     )

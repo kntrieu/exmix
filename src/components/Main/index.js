@@ -3,7 +3,8 @@ import Container from '@material-ui/core/Container';
 import ButtonAppBar from '../AppBar';
 import Wizart from '../Wizart';
 import QuestionForm from '../Questions';
-import QuestionsList from '../Questions/QuestionsList'
+import QuestionsList from '../Questions/QuestionsList';
+import Mixing from '../Mixing';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,6 +26,7 @@ const Main = () => {
                         <Route path="/them-cau-hoi" exact component={QuestionForm} />
                         <Route path="/sua-cau-hoi/:questionId" component={QuestionForm}/> 
                         <Route path="/danh-sach-cau-hoi" exact component={QuestionsList} />
+                        <Route path="/tron-cau-hoi" exact component={Mixing} />
                     </Switch>
                 </div>
             </Container>

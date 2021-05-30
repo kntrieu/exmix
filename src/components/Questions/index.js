@@ -28,19 +28,27 @@ const QuestionForm = () => {
         answers: [
             {
                 id: 'A',
+			    label: 'A',
                 content: '',
+                correct: true
             },
             {
                 id: 'B',
+			    label: 'B',
                 content: '',
+                correct: false
             },
             {
                 id: 'C',
+			    label: 'C',
                 content: '',
+                correct: false
             },
             {
                 id: 'D',
+			    label: 'D',
                 content: '',
+                correct: false
             }
         ],
         correctAnswer: 'A'
@@ -66,6 +74,14 @@ const QuestionForm = () => {
         const value = event.currentTarget.value;
         const newQuestion = questionState;
         newQuestion.correctAnswer = value;
+        newQuestion.answers.map(ans => {
+            if(ans.id === value) {
+                ans.correct = true;
+            } else {
+                ans.correct = false;
+            }
+            return ans;
+        })
 
         updateQuestion(newQuestion);
     }
