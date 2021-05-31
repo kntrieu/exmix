@@ -46,10 +46,9 @@ export const shuffleQuestions = (questions, numberOfCopy) => {
     if (getMaxResults(questions.length) < numberOfCopy) {
         return null;
     }
-
+    
     let resultIds = [];
     let copies = [];
-
     const checkAndPush = () => {
         let array1 = shuffleIds(questions);
         if (!checkDuplicate(array1, resultIds)) {

@@ -22,9 +22,13 @@ const Mixing = () => {
 
     const onSubmitForm = () => {
         const arrayOfCopies = shuffleQuestions(questions, numOfCopies);
-        updateCopies(arrayOfCopies);
-        console.log('-------- Copies -------------\n', arrayOfCopies);
-        dispatch(updateMixing(arrayOfCopies));
+        if (arrayOfCopies.length > 0) {
+            updateCopies(arrayOfCopies);
+            dispatch(updateMixing(arrayOfCopies));
+            setTimeout(() => {
+                window.location.pathname = '/ket-qua-tron';
+            });
+        }
     }
 
     return (
