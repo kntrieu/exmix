@@ -27,7 +27,7 @@ const Mixing = () => {
             dispatch(updateMixing(arrayOfCopies));
             setTimeout(() => {
                 window.location.pathname = '/ket-qua-tron';
-            });
+            }, 1000);
         }
     }
 

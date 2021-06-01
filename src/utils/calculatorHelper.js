@@ -1,3 +1,5 @@
+import { ALPHABET_STRING } from './constants';
+
 export const shuffleIds = (questions) => {
     let array = questions.map(question => question.id);
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -16,6 +18,24 @@ export const shuffleIds = (questions) => {
     }
   
     return array;
+}
+
+export const shuffleAnswers = (ques) => {
+    let question = JSON.parse(JSON.stringify(ques));
+    var currentIndex = question.answers.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = question.answers[currentIndex];
+        question.answers[currentIndex] = question.answers[randomIndex];
+        question.answers[randomIndex] = temporaryValue;
+        question.answers[currentIndex].label = ALPHABET_STRING[currentIndex];
+    }
+
+    question.correctAnswer = question.answers[question.answers.findIndex(item => item.correct)].label;
+
+    return question;
 }
 
 export const getMaxResults = (no) => {
@@ -67,7 +87,8 @@ export const shuffleQuestions = (questions, numberOfCopy) => {
     resultIds.map(ids => {
         let copy = [];
         ids.map(id => {
-            let qst = questions.find(q => q.id === id);
+            let qst = JSON.parse(JSON.stringify({ ...questions.find(q => q.id === id) }));
+            qst = {...shuffleAnswers(qst)};
             copy.push(qst);
             return id;
         });
