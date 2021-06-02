@@ -5,7 +5,7 @@ import {
     FormControl,
     Grid
 } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -44,25 +44,31 @@ const QuestionsList = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {questions.map((question) => (
-                                <TableRow key={question.id}>
-                                    <TableCell align="center">{question.id + 1}</TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {question.content}
-                                    </TableCell>
-                                    <TableCell align="center">{question.correctAnswer}</TableCell>
-                                    <TableCell align="center">
-                                        <IconButton aria-label="delete" title="Xóa câu hỏi">
-                                            <DeleteIcon fontSize="small" />
-                                        </IconButton>
-                                        <Link to={`/sua-cau-hoi/${question.id}`}>
-                                            <IconButton aria-label="edit" title="Sửa câu hỏi">
-                                                <EditIcon fontSize="small" />
+                            {questions.map((question) => {
+                                let correctAnswer = question.answers.find(item => item.correct).label + '. ' + question.answers.find(item => item.correct).content;
+                                if (correctAnswer.length > 30) {
+                                    correctAnswer = correctAnswer.substr(0, 30) + '...';
+                                }
+                                return (
+                                    <TableRow key={question.id}>
+                                        <TableCell width={'10%'} align="center">{question.id + 1}</TableCell>
+                                        <TableCell width={'40%'}>
+                                            {question.content}
+                                        </TableCell>
+                                        <TableCell width={'30%'} align="left">{correctAnswer}</TableCell>
+                                        <TableCell width={'20%'} align="center">
+                                            <IconButton aria-label="delete" title="Xóa câu hỏi">
+                                                <DeleteIcon fontSize="small" />
                                             </IconButton>
-                                        </Link>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                                            <Link to={`/sua-cau-hoi/${question.id}`}>
+                                                <IconButton aria-label="edit" title="Sửa câu hỏi">
+                                                    <EditIcon fontSize="small" />
+                                                </IconButton>
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })}
                         </TableBody>
                     </Table>
                 </TableContainer>
