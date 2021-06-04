@@ -12,7 +12,6 @@ import {shuffleQuestions} from '../../utils/calculatorHelper';
 
 const Mixing = () => {
     const [numOfCopies, updateNumOfCopies] = useState(3);
-    const [copies, updateCopies] = useState([]);
     const questions = useSelector(state => state.QuestionsReducer);
     const dispatch = useDispatch();
 
@@ -23,7 +22,6 @@ const Mixing = () => {
     const onSubmitForm = () => {
         const arrayOfCopies = shuffleQuestions(questions, numOfCopies);
         if (arrayOfCopies.length > 0) {
-            updateCopies(arrayOfCopies);
             dispatch(updateMixing(arrayOfCopies));
             setTimeout(() => {
                 window.location.pathname = '/ket-qua-tron';
