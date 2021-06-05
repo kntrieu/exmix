@@ -11,6 +11,10 @@ import { getWizartData } from './localStorageUtils';
 
 const centimet = 1440 / 2.54; //convert DXA to centimet.
 const mainFont = 'Times New Roman';
+const textConfig = {
+    font: mainFont,
+    size: 14 * 2,
+};
 const defaultPageMargin = {
     margin: {
         top: 2 * centimet,
@@ -28,70 +32,59 @@ const createHeaderParagragph = (id) => {
         alignment: AlignmentType.LEFT,
         children: [
             new TextRun({
-                font: mainFont,
                 text: 'Trường THCS Nguyễn An Ninh'.toUpperCase(),
                 bold: true,
-                size: 14 * 2,
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
                 text: '\t' + wizart[0].value.toUpperCase(),
                 bold: true,
-                size: 14 * 2,
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
                 text: `\tMôn: `,
                 bold: true,
-                size: 14 * 2,
-                break: 1
+                break: 1,
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
                 text: wizart[1].value,
-                size: 14 * 2,
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
                 text: `Mã đề: ${id}`,
                 bold: true,
-                size: 14 * 2,
-                break: 1
-            }),
-            new TextRun({
-                font: mainFont,
-                text: `\tThời gian: `,
-                size: 14 * 2,
-                bold: true
-            }),
-            new TextRun({
-                font: mainFont,
-                text: wizart[3].value + 'phút',
-                size: 14 * 2,
-            }),
-            new TextRun({
-                font: mainFont,
-                text: 'ĐỀ CHÍNH THỨC',
-                size: 14 * 2,
                 break: 1,
-                bold: true
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
+                text: `\tThời gian: `,
+                bold: true,
+                ...textConfig
+            }),
+            new TextRun({
+                text: wizart[3].value + 'phút',
+                ...textConfig
+            }),
+            new TextRun({
+                text: 'ĐỀ CHÍNH THỨC',
+                break: 1,
+                bold: true,
+                ...textConfig
+            }),
+            new TextRun({
                 text: `\tNăm học: `,
-                size: 14 * 2,
-                bold: true
+                bold: true,
+                ...textConfig
             }),
             new TextRun({
-                font: mainFont,
                 text: wizart[2].value,
-                size: 14 * 2,
+                ...textConfig
             }),
 
             //Add break lines
             new TextRun({
-                font: mainFont,
-                size: 14 * 2,
+                ...textConfig,
                 break: 2,
             }),
         ],
@@ -137,9 +130,8 @@ const createAnswerLayout = (answers) => {
     if (longestChars <= 10) {
         answers.map((answer, indexOfAnswer) => {
             let answerText = new TextRun({
-                font: mainFont,
                 text: `\t${answer.label}. ${answer.content.trim()}`,
-                size: 14 * 2,
+                ...textConfig
             });
 
             children.push(answerText);
@@ -205,10 +197,9 @@ const createAnswerLayout = (answers) => {
     } else {
         answers.map((answer, indexOfAnswer) => {
             let answerText = new TextRun({
-                font: mainFont,
                 text: `\t${answer.label}. ${answer.content.trim()}`,
-                size: 14 * 2,
-                break: indexOfAnswer > 0 ? 1 : 0
+                break: indexOfAnswer > 0 ? 1 : 0,
+                ...textConfig
             });
 
             children.push(answerText);
@@ -267,17 +258,15 @@ export const printCopies = (copies, wizartData) => {
         copy.map((quest, indexOfQuestion) => {
 
             let questionNumber = new TextRun({
-                font: mainFont,
+                ...textConfig,
                 text: `Câu ${indexOfQuestion + 1}:`,
-                size: 14 * 2,
                 bold: true,
                 underline: true
             });
 
             let questionContent = new TextRun({
-                font: mainFont,
                 text: ' ' + quest.content.trim(),
-                size: 14 * 2,
+                ...textConfig
             });
 
             let paragraph = new Paragraph({
@@ -286,31 +275,6 @@ export const printCopies = (copies, wizartData) => {
             });
 
             section.children.push(paragraph);
-
-            // quest.answers.map((asw) => {
-            //     //Create answer 
-            //     let answerParagraph = new Paragraph({
-            //         alignment: AlignmentType.LEFT,
-            //         children: [
-            //             new TextRun({
-            //                 font: mainFont,
-            //                 text: `\t${asw.label}. ${asw.content.trim()}.`,
-            //                 size: 14 * 2,
-            //             })
-            //         ],
-            //         tabStops: [
-            //             {
-            //                 type: TabStopType.LEFT,
-            //                 position: 1.25 * centimet, //Thụt vô 1.25 cm
-            //             }
-            //         ],
-            //     });
-
-            //     section.children.push(answerParagraph);
-
-            //     return asw;
-            // });
-
             let answersParagraph = createAnswerLayout(quest.answers);
             section.children.push(answersParagraph);
 
