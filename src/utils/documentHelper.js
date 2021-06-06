@@ -32,12 +32,12 @@ const createHeaderParagragph = (id) => {
         alignment: AlignmentType.LEFT,
         children: [
             new TextRun({
-                text: 'Trường THCS Nguyễn An Ninh'.toUpperCase(),
+                text: 'TRƯỜNG ' + wizart[0].value.toUpperCase(),
                 bold: true,
                 ...textConfig
             }),
             new TextRun({
-                text: '\t' + wizart[0].value.toUpperCase(),
+                text: '\t' + wizart[1].value.toUpperCase(),
                 bold: true,
                 ...textConfig
             }),
@@ -48,7 +48,7 @@ const createHeaderParagragph = (id) => {
                 ...textConfig
             }),
             new TextRun({
-                text: wizart[1].value,
+                text: wizart[2].value,
                 ...textConfig
             }),
             new TextRun({
@@ -63,7 +63,7 @@ const createHeaderParagragph = (id) => {
                 ...textConfig
             }),
             new TextRun({
-                text: wizart[3].value + 'phút',
+                text: wizart[4].value + ' phút',
                 ...textConfig
             }),
             new TextRun({
@@ -78,7 +78,7 @@ const createHeaderParagragph = (id) => {
                 ...textConfig
             }),
             new TextRun({
-                text: wizart[2].value,
+                text: wizart[3].value,
                 ...textConfig
             }),
 

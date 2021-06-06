@@ -3,31 +3,43 @@ import { setWizartData, getWizartData } from '../../utils/localStorageUtils';
 let initialState = !getWizartData() ? [
     {
         id: 0,
-        title: 'Nhập Tên Kì Thi',
+        title: 'Nhập Tên Trường',
         value: '',
         completed: false,
-        isCurrentStep: true
+        isCurrentStep: true,
+        type: 'text'
     },
     {
         id: 1,
-        title: 'Nhập Tên Môn Học',
+        title: 'Nhập Tên Kì Thi',
         value: '',
         completed: false,
-        isCurrentStep: false
+        isCurrentStep: true,
+        type: 'text'
     },
     {
         id: 2,
-        title: 'Nhập Năm Học',
+        title: 'Nhập Tên Môn Học',
         value: '',
         completed: false,
-        isCurrentStep: false
+        isCurrentStep: false,
+        type: 'text'
     },
     {
         id: 3,
+        title: 'Nhập Năm Học',
+        value: '',
+        completed: false,
+        isCurrentStep: false,
+        type: 'text'
+    },
+    {
+        id: 4,
         title: 'Nhập Số Phút',
         value: 0,
         completed: false,
-        isCurrentStep: false
+        isCurrentStep: false,
+        type: 'number'
     }
 ] : getWizartData();
 
@@ -90,7 +102,10 @@ const WizartReducer = (state = initialState, action) => {
 
             setWizartData(state);
             return state;
-
+        case 'UPDATE_WIZART_DATA':
+            state = action.data;
+            setWizartData(state);
+            return state;
         default:
             setWizartData(state);
             return state;

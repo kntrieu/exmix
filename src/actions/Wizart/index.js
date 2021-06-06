@@ -32,3 +32,10 @@ export const setStepToNotCurrentStep = (data) => {
         data: data
     }
 }
+
+export const updateWizaData = (data) => {
+    return {
+        type: 'UPDATE_WIZART_DATA',
+        data: data
+    }
+}

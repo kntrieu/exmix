@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import ButtonAppBar from '../AppBar';
 import Wizart from '../Wizart';
+import ExamForm from '../ExamForm/ExamForm';
 import QuestionForm from '../Questions';
 import QuestionsList from '../Questions/QuestionsList';
 import Mixing from '../Mixing';
@@ -28,7 +29,7 @@ const Main = () => {
                 <div id="main-content" className={classes.mainMargin}>
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/thong-tin-ki-thi" exact component={Wizart} />
+                        <Route path="/thong-tin-ki-thi" exact component={ExamForm} />
                         <Route path="/them-cau-hoi" exact component={QuestionForm} />
                         <Route path="/sua-cau-hoi/:questionId" component={QuestionForm}/> 
                         <Route path="/danh-sach-cau-hoi" exact component={QuestionsList} />
