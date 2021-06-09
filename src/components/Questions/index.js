@@ -15,9 +15,9 @@ import { useState } from 'react';
 import { addNewQuestion, updateQuestion as editQuestion } from '../../actions/Questions';
 import {Link} from 'react-router-dom';
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
-const QuestionForm = () => {
+const QuestionForm = ({showNotification}) => {
     const dispatch = useDispatch();
     const questions = useSelector(state => state.QuestionsReducer);
     const nextId = questions.length;
@@ -56,6 +56,7 @@ const QuestionForm = () => {
 
 
     const [questionState, updateQuestion] = useState(questionObj);
+    const [backToList, setBackToList] = useState(false);
 
     const onChangeQuestionContent = (value) => {
         const newQuestion = questionState;
@@ -89,7 +90,12 @@ const QuestionForm = () => {
     const submitQuestion = () => {
         const func = questionId ? editQuestion : addNewQuestion;
         dispatch(func(questionState));
-        window.location.pathname="/danh-sach-cau-hoi";
+        showNotification('Đã lưu câu hỏi', 5000, 'success');
+        setBackToList(true);
+    }
+
+    if (backToList) {
+        return <Redirect to='/danh-sach-cau-hoi'/>
     }
 
     return (

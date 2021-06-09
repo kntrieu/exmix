@@ -11,12 +11,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateWizaData} from '../../actions/Wizart';
 
 
-const ExamForm = () => {
+const ExamForm = ({showNotification}) => {
     const wizartData = useSelector(state => state.WizartReducer);
     const [wizartDataState, updateWizart] = useState(JSON.parse(JSON.stringify(wizartData)));
     const dispatch = useDispatch();
     const onSubmitForm = () => {
         dispatch(updateWizaData(wizartDataState));
+        showNotification('Lưu thông tin kì thi thành công!', 5000, 'success');
     };
 
     const onChangeInput = (event, id) => {
@@ -25,9 +26,12 @@ const ExamForm = () => {
         tempWizartDataState.map(wizart => {
             if (wizart.id === id) {
                 wizart.value = value;
-            }
+            };
+            return wizart;
         });
+
         updateWizart(tempWizartDataState);
+        
     };
 
     return (

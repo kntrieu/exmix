@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     WizartReducer: WizartReducer,
     QuestionsReducer: QuestionsReducer,
     isLoggedReducer: isLoggedReducer,
-    MixingReducer: MixingReducer
+    MixingReducer: MixingReducer,
 });
 
 export default rootReducer;
