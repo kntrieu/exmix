@@ -1,12 +1,22 @@
-import { Box } from '@material-ui/core';
+import { 
+    Box,
+    Grid,
+    Typography
+ } from '@material-ui/core';
 import React from 'react';
+import HomeHeader from './HomeHeader';
+
 
 
 const Home = () => {
 
     return (
         <Box>
-            This is home
+            <Grid container spacing={3} direction="row" alignItems="center">
+                <Grid item xs={12}>
+                    <HomeHeader />
+                </Grid>
+            </Grid>
         </Box>
     )
 }

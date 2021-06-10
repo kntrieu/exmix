@@ -54,8 +54,9 @@ const Sidebar = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const drawer = (
         <div>
-            <div className={classes.toolbar} />
-            <Divider />
+            <div className={classes.toolbar}>
+                <img src="/EXMIX_LOGO.png" width="240" height="64"/>
+            </div>
             <List>
                 <Link to="/" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
                     <ListItem button>

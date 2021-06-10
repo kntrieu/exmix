@@ -43,7 +43,7 @@ const Main = () => {
         <Router>
             <ButtonAppBar/>
             <Sidebar />
-            <Container maxWidth="lg">
+            <Container maxWidth="xl">
                 
                 <div id="main-content" className={classes.mainMargin}>
                     <Switch>
