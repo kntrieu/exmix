@@ -2,15 +2,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import HorizontalStepper from './HorizontalStepper';
 import { Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
+  root: {
+  },
   media: {
     height: 140,
   },
@@ -20,7 +21,7 @@ const HomeHeader = () => {
   const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -29,8 +30,27 @@ const HomeHeader = () => {
           <Typography variant="body2" color="textSecondary" component="p">
             Chào mừng bạn đến với ứng dụng trộn đề online EXMIX. Ứng dụng này sẽ giúp bạn trộn đề một cách nhanh chóng và miễn phí mà không cần tải phần mềm về máy.
           </Typography>
-          <Grid>
+
+          <br/><br/>
+          
+          <Grid container spacing={3} direction="row" justify="center" alignItems="center">
+            <Grid item xs={12}>
+              <Typography gutterBottom variant="h5" component="h2" align="center">
+                Bạn chỉ cần hoàn tất 4 bước để có bộ đề như ý
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3} direction="row" justify="center" alignItems="center">
+            <Grid item xs={12}>
               <HorizontalStepper/>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3} direction="row" justify="center" alignItems="center">
+            <Grid item xs={3}>
+              <Link to="/thong-tin-ki-thi" style={{ textDecoration: 'none' }}>
+                <Button fullWidth={true} variant="contained" color="primary" size="large">Bắt đầu ngay!</Button>
+              </Link>
+            </Grid>
           </Grid>
         </CardContent>
       </CardActionArea>
