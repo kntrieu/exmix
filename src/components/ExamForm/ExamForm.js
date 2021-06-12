@@ -9,6 +9,8 @@ import {
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateWizaData} from '../../actions/Wizart';
+import BottomAction from '../BottomAction/BottomAction';
+import DoneIcon from '@material-ui/icons/Done';
 
 
 const ExamForm = ({showNotification}) => {
@@ -34,6 +36,16 @@ const ExamForm = ({showNotification}) => {
         
     };
 
+    const actions = [
+        {
+            color: 'primary',
+            isSubmit: true,
+            label: 'Lưu',
+            size: 'large',
+            startIcon: DoneIcon,
+        }
+    ];
+
     return (
         <Box>
             <ValidatorForm onSubmit={onSubmitForm}>
@@ -58,13 +70,9 @@ const ExamForm = ({showNotification}) => {
                                 })
                             }
                         </FormGroup>
-                        <FormGroup>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button type="submit" variant="contained" color="primary">Lưu</Button>
-                            </FormControl>
-                        </FormGroup>
                     </Grid>
                 </Grid>
+                <BottomAction actions={actions} />
             </ValidatorForm>
         </Box>
     )

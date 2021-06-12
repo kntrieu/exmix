@@ -1,9 +1,6 @@
 import React from 'react';
 import { 
-    Box,
-    Button,
-    Grid,
-    FormControl
+    Box
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -13,13 +10,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Link } from 'react-router-dom';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import LoopIcon from '@material-ui/icons/Loop';
 import PrintIcon from '@material-ui/icons/Print';
 import { updateMixing } from '../../actions/Mixing';
 import {shuffleQuestions} from '../../utils/calculatorHelper';
 import { printCopies } from '../../utils/documentHelper';
+import BottomAction from '../BottomAction/BottomAction';
 
 const MixingList = () => {
     const copies = useSelector(state => state.MixingReducer);
@@ -38,6 +35,34 @@ const MixingList = () => {
     const printDoc = () => {
         printCopies(copies, wizart);
     }
+
+    const actions = [
+        {
+            color: 'primary',
+            isSubmit: false,
+            label: 'Danh sách câu hỏi',
+            size: 'large',
+            startIcon: ViewListIcon,
+            link: '/danh-sach-cau-hoi'
+        },
+        {
+            color: 'secondary',
+            isSubmit: false,
+            label: 'Trộn lại',
+            size: 'large',
+            endIcon: LoopIcon,
+            onClick: updateResults
+        },
+        {
+            color: 'primary',
+            isSubmit: false,
+            label: 'Xuất đề',
+            size: 'large',
+            endIcon: PrintIcon,
+            onClick: printDoc
+        },
+
+    ];
 
     return (
         <>
@@ -77,41 +102,7 @@ const MixingList = () => {
                     </Table>
                 </TableContainer>
             </Box>
-            <Box>
-                <Grid container spacing={3} direction="row" alignItems="center">
-                    <Grid item xs={12} md={4}>
-                        <Link to="/danh-sach-cau-hoi" style={{ textDecoration: 'none' }}>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button
-                                    variant="contained"
-                                    color="primary" size="large" startIcon={<ViewListIcon />} >
-                                    Danh sách câu hỏi
-                                </Button>
-                            </FormControl>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <Button
-                                onClick={() => updateResults()}
-                                variant="contained"
-                                color="secondary" size="large" endIcon={<LoopIcon />} >
-                                Trộn lại
-                            </Button>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <FormControl margin="normal" fullWidth={true}>
-                            <Button
-                                onClick={ () => printDoc() }
-                                variant="contained"
-                                color="primary" size="large" endIcon={<PrintIcon />} >
-                                Xuất đề
-                            </Button>
-                        </FormControl>
-                    </Grid>
-                </Grid>
-            </Box>
+            <BottomAction actions={actions} />
         </>
     )
 }

@@ -16,6 +16,9 @@ import { addNewQuestion, updateQuestion as editQuestion } from '../../actions/Qu
 import {Link} from 'react-router-dom';
 import { ValidatorForm , TextValidator} from 'react-material-ui-form-validator';
 import { useParams, Redirect } from 'react-router-dom';
+import BottomAction from '../BottomAction/BottomAction';
+import DoneIcon from '@material-ui/icons/Done';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const QuestionForm = ({showNotification}) => {
     const dispatch = useDispatch();
@@ -94,6 +97,24 @@ const QuestionForm = ({showNotification}) => {
         setBackToList(true);
     }
 
+    const actions = [
+        {
+            color: 'primary',
+            isSubmit: true,
+            label: 'Xong',
+            size: 'large',
+            endIcon: DoneIcon,
+        },
+        {
+            color: 'secondary',
+            isSubmit: false,
+            label: 'Hủy',
+            size: 'large',
+            endIcon: CancelIcon,
+            link: '/danh-sach-cau-hoi'
+        }
+    ];
+
     if (backToList) {
         return <Redirect to='/danh-sach-cau-hoi'/>
     }
@@ -121,33 +142,7 @@ const QuestionForm = ({showNotification}) => {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <Grid container spacing={3} direction="row" justify="center" alignItems="center">
-                    <Grid item xs={6}>
-                        <Box>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button
-                                    variant="contained"
-                                    color="primary" size="large"
-                                    type="submit" >
-                                    Xong
-                                </Button>
-                            </FormControl>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Box>
-                            <Link to="/danh-sach-cau-hoi" style={{ textDecoration: 'none' }}>
-                                <FormControl margin="normal" fullWidth={true}>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary" size="large" >
-                                        Hủy bỏ
-                                    </Button>
-                                </FormControl>
-                            </Link>
-                        </Box>
-                    </Grid>
-                </Grid>
+                <BottomAction actions={actions} />
                 </ValidatorForm>
             </Box>
         </>

@@ -1,9 +1,7 @@
 import React from 'react';
 import { 
     Box,
-    Button,
-    FormControl,
-    Grid
+    TablePagination
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import Table from '@material-ui/core/Table';
@@ -20,16 +18,51 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import LoopIcon from '@material-ui/icons/Loop';
+import BottomAction from '../BottomAction/BottomAction';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme => ({
     table: {
         minWidth: 650,
     },
-});
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+    }
+}));
   
 const QuestionsList = () => {
     const classes = useStyles();
     const questions = useSelector( state => state.QuestionsReducer);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+    const actions = [
+        {
+            color: 'primary',
+            isSubmit: false,
+            label: 'Thêm Câu Hỏi',
+            size: 'large',
+            endIcon: AddBoxIcon,
+            link: '/them-cau-hoi'
+        },
+        {
+            color: 'secondary',
+            isSubmit: false,
+            label: 'Trộn Câu Hỏi',
+            size: 'large',
+            endIcon: LoopIcon,
+            link: '/tron-cau-hoi'
+        }
+
+    ];
+
     return (
         <>
             <Box>
@@ -44,7 +77,9 @@ const QuestionsList = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {questions.map((question) => {
+                            {questions
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((question) => {
                                 let correctAnswer = question.answers.find(item => item.correct).label + '. ' + question.answers.find(item => item.correct).content;
                                 if (correctAnswer.length > 30) {
                                     correctAnswer = correctAnswer.substr(0, 30) + '...';
@@ -72,33 +107,18 @@ const QuestionsList = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={questions.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    labelRowsPerPage={'Số dòng hiển thị'}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
             </Box>
-            <Box>
-                <Grid container spacing={3} direction="row" alignItems="center">
-                    <Grid item xs={6}>
-                        <Link to="/them-cau-hoi" style={{ textDecoration: 'none' }}>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button
-                                    variant="contained"
-                                    color="primary" size="large" endIcon={<AddBoxIcon />} >
-                                    Thêm câu hỏi
-                                </Button>
-                            </FormControl>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Link to="/tron-cau-hoi" style={{ textDecoration: 'none' }}>
-                            <FormControl margin="normal" fullWidth={true}>
-                                <Button
-                                    variant="contained"
-                                    color="secondary" size="large" endIcon={<LoopIcon />} >
-                                    Trộn câu hỏi
-                                </Button>
-                            </FormControl>
-                        </Link>
-                    </Grid>
-                </Grid>
-            </Box>
+            <BottomAction actions={actions} />
         </>
     )
 }

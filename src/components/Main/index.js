@@ -9,7 +9,8 @@ import MixingList from '../Mixing/MixingList';
 import Home from '../Home/Home';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -31,6 +32,8 @@ const Alert = (props) => {
 const Main = () => {
     const classes = useStyles();
     const [notificationInf, setNotification] = useState({isOpen: false, message: '', timeout: 0, type: 'success'});
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
     const showNotification = (message, timeout, type) => {
         if(!message || !timeout) return true;
@@ -48,7 +51,7 @@ const Main = () => {
                 <Sidebar />
                 <Container maxWidth="xl">
                     
-                    <div id="main-content" className={classes.mainMargin}>
+                    <div id="main-content" className={matches ? classes.mainMargin : ''}>
                         <Switch>
                             <Route path="/" exact>
                                 <Home />
