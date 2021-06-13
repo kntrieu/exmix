@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeftOut16: {
         marginLeft: '-16px',
+        width: '100%'
     }
 }));
 
@@ -34,7 +35,7 @@ const BottomAction = ({actions}) => {
 
     return (
         <Box boxShadow={5} className={classes.root + ' ' + ( matches ? classes.marginLeftOut25 : classes.marginLeftOut16)}>
-            <Grid container spacing={3} direction="row" alignItems="center" style={{paddingLeft: '24px', paddingRight: '24px'}}>
+            <Grid container spacing={3} direction="row" alignItems={'center'} style={{paddingLeft: '24px', paddingRight: '24px'}}>
                 {
                     actions.map((action, index) => {
                         const mainItem = 
@@ -42,7 +43,7 @@ const BottomAction = ({actions}) => {
                             <Button type={action.isSubmit ? 'submit' : 'button'}
                                     onClick={action.onClick}
                                     variant="contained"
-                                    color={action.color} size={action.size} 
+                                    color={action.color} size={!matches ? 'small' : action.size} 
                                     startIcon={ action.startIcon ? <action.startIcon /> : null } 
                                     endIcon={ action.endIcon ? <action.endIcon/> : null}>
                                 {action.label}

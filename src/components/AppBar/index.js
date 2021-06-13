@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    }
   },
   title: {
     flexGrow: 1,
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({handleDrawerToggle}) {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -36,7 +39,7 @@ export default function ButtonAppBar() {
     <div className={classes.root + ' ' + (matches ? classes.mainMargin : '')}>
       <AppBar position="static" className={classes.header}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} onClick={handleDrawerToggle} aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>

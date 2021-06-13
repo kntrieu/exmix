@@ -40,7 +40,7 @@ const MixingList = () => {
         {
             color: 'primary',
             isSubmit: false,
-            label: 'Danh sách câu hỏi',
+            label: 'D/s câu hỏi',
             size: 'large',
             startIcon: ViewListIcon,
             link: '/danh-sach-cau-hoi'

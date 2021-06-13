@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     mainMargin: {
         marginTop: '50px',
         marginLeft: '240px',
+    },
+    root: {
+        marginTop: '50px',
+        marginBottom: '80px'
     }
 }));
 
@@ -34,6 +38,7 @@ const Main = () => {
     const [notificationInf, setNotification] = useState({isOpen: false, message: '', timeout: 0, type: 'success'});
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const [isMobileOpenSideBar, setIsMobileOpenSideBar] = useState(false);
 
     const showNotification = (message, timeout, type) => {
         if(!message || !timeout) return true;
@@ -44,14 +49,18 @@ const Main = () => {
         setNotification({isOpen: false, message: '', timeout: 0});
     };
 
+    const handleDrawerToggle = () => {
+        setIsMobileOpenSideBar(!isMobileOpenSideBar);
+    };
+
     return (
         <ThemeProvider theme={exmixThemes}>
             <Router>
-                <ButtonAppBar/>
-                <Sidebar />
+                <ButtonAppBar handleDrawerToggle={handleDrawerToggle}/>
+                <Sidebar isMobileOpenSideBar={isMobileOpenSideBar} handleDrawerToggle={handleDrawerToggle} />
                 <Container maxWidth="xl">
                     
-                    <div id="main-content" className={matches ? classes.mainMargin : ''}>
+                    <div id="main-content" className={matches ? classes.mainMargin : classes.root}>
                         <Switch>
                             <Route path="/" exact>
                                 <Home />

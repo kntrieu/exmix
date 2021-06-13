@@ -113,7 +113,7 @@ const QuestionsList = () => {
                     count={questions.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
-                    labelRowsPerPage={'Số dòng hiển thị'}
+                    labelRowsPerPage={'Dòng/trang'}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />

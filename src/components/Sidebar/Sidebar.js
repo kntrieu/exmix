@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       }
 }));
 
-const Sidebar = () => {
+const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
     const classes = useStyles();
     const container = window !== undefined ? () => window.document.body : undefined;
     const theme = useTheme();
@@ -92,10 +92,6 @@ const Sidebar = () => {
             </List>
         </div>
     );
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-
 
     return (
         <nav className={classes.drawer} aria-label="mailbox folders">
@@ -105,7 +101,7 @@ const Sidebar = () => {
                     container={container}
                     variant="temporary"
                     anchor={theme.direction === "rtl" ? "right" : "left"}
-                    open={mobileOpen}
+                    open={isMobileOpenSideBar}
                     onClose={handleDrawerToggle}
                     classes={{
                         paper: classes.drawerPaper
