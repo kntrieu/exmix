@@ -19,6 +19,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import LoopIcon from '@material-ui/icons/Loop';
 import BottomAction from '../BottomAction/BottomAction';
+import BackupIcon from '@material-ui/icons/Backup';
 
 const useStyles = makeStyles( theme => ({
     table: {
@@ -59,6 +60,14 @@ const QuestionsList = () => {
             size: 'large',
             endIcon: LoopIcon,
             link: '/tron-cau-hoi'
+        },
+        {
+            color: 'primary',
+            isSubmit: false,
+            label: 'Nạp Câu Hỏi',
+            size: 'large',
+            endIcon: BackupIcon,
+            link: '/nap-cau-hoi'
         }
 
     ];

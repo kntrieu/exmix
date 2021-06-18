@@ -4,6 +4,7 @@ import ButtonAppBar from '../AppBar';
 import ExamForm from '../ExamForm/ExamForm';
 import QuestionForm from '../Questions';
 import QuestionsList from '../Questions/QuestionsList';
+import UploadQuestion from '../UploadQuestion/UploadQuestion';
 import Mixing from '../Mixing';
 import MixingList from '../Mixing/MixingList';
 import Home from '../Home/Home';
@@ -82,6 +83,9 @@ const Main = () => {
                             </Route>
                             <Route path="/ket-qua-tron" exact>
                                 <MixingList />
+                            </Route>
+                            <Route path="/nap-cau-hoi" exact>
+                                <UploadQuestion />
                             </Route>
                         </Switch>
                     </div>

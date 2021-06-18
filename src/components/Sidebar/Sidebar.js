@@ -50,7 +50,6 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
     const classes = useStyles();
     const container = window !== undefined ? () => window.document.body : undefined;
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
     const drawer = (
         <div>
             <div className={classes.toolbar}>

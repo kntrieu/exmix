@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import HorizontalStepper from './HorizontalStepper';
 import { Grid } from '@material-ui/core';
@@ -48,7 +47,9 @@ const HomeHeader = () => {
           <Grid container spacing={3} direction="row" justify="center" alignItems="center">
             <Grid item xs={3}>
               <Link to="/thong-tin-ki-thi" style={{ textDecoration: 'none' }}>
-                <Button fullWidth={true} variant="contained" color="primary" size="large">Bắt đầu ngay!</Button>
+                <Typography className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary" variant="h5" component="h2">
+                  Bắt Đầu Ngay!
+                </Typography>
               </Link>
             </Grid>
           </Grid>
