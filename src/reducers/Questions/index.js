@@ -20,6 +20,7 @@ const QuestionsReducer = (state = initialState, action) => {
                 return question;
             });
             
+            
             //set to local storage
             setQuestionData(state);
             return state;
