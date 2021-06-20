@@ -27,13 +27,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start-fe": "react-scripts start",
-    "start": "npm-run-all --parallel start-fe start-webapi",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-webapi": "cd webapi && npm run staging",
-    "all": "npm-run-all --parallel start start-webapi"
+    "start-webapi": "cd webapi && npm run dev"
   },
   "eslintConfig": {
     "extends": [
