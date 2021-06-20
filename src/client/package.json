@@ -1,7 +1,6 @@
 {
   "name": "exix",
   "version": "0.1.0",
-  "proxy": "http://localhost:4100",
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.3.0",
