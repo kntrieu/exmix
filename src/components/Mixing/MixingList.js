@@ -17,6 +17,7 @@ import { updateMixing } from '../../actions/Mixing';
 import {shuffleQuestions} from '../../utils/calculatorHelper';
 import { printCopies } from '../../utils/documentHelper';
 import BottomAction from '../BottomAction/BottomAction';
+import Typography from '@material-ui/core/Typography';
 
 const MixingList = () => {
     const copies = useSelector(state => state.MixingReducer);
@@ -36,15 +37,18 @@ const MixingList = () => {
         printCopies(copies, wizart);
     }
 
-    const actions = [
+    let actions = [
         {
             color: 'primary',
             isSubmit: false,
-            label: 'D/s câu hỏi',
+            label: 'Nhập câu hỏi',
             size: 'large',
             startIcon: ViewListIcon,
             link: '/danh-sach-cau-hoi'
-        },
+        }
+    ];
+
+    const fullActions = [
         {
             color: 'secondary',
             isSubmit: false,
@@ -61,46 +65,74 @@ const MixingList = () => {
             endIcon: PrintIcon,
             onClick: printDoc
         },
-
     ];
+
+    if (copies.length > 0) {
+        actions = [...actions, ...fullActions];
+    }
+
+    if (questions.length > 5) {
+        actions.push(
+            {
+                color: 'primary',
+                isSubmit: false,
+                label: 'Trộn câu hỏi',
+                size: 'large',
+                startIcon: LoopIcon,
+                link: '/tron-cau-hoi'
+            }
+        )
+    }
+
+    const buildTable = (copies) => {
+        let table = <Typography gutterBottom color={'primary'} variant="h6" component="h2">
+                        Hiện tại bạn chưa có dữ liệu trộn, bạn cần nhập câu hỏi và sau đó trộn lại.
+                    </Typography>
+
+        if (copies.length > 0) {
+            table = <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center">Câu</TableCell>
+                                    {
+                                        copies.map((item, index) => {
+                                            return (
+                                                <TableCell key={index} align="center">Đáp án đề {index + 1}</TableCell>
+                                            )
+                                        })
+                                    }
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    copies[0].map((item, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell align="center">{index + 1}</TableCell>
+                                            {
+                                                copies.map((ex, id) => {
+                                                    return (
+                                                        <TableCell key={id} align="center">
+                                                            {ex[index].correctAnswer}
+                                                        </TableCell>
+                                                    )
+                                                })
+                                            }
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer>;
+        }
+
+        return table;
+    }
 
     return (
         <>
             <Box>
-                <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center">Câu</TableCell>
-                                {
-                                copies.map((item, index) => {
-                                    return (
-                                            <TableCell key={index} align="center">Đáp án đề {index + 1}</TableCell>
-                                    )
-                                }) 
-                                }
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                copies[0].map((item, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell align="center">{index + 1}</TableCell>
-                                        {
-                                            copies.map((ex, id) => {
-                                                return (
-                                                    <TableCell key={id} align="center">
-                                                        {ex[index].correctAnswer}
-                                                    </TableCell>
-                                                )
-                                            })
-                                        }
-                                    </TableRow>
-                                ))
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                {  buildTable(copies) }
             </Box>
             <BottomAction actions={actions} />
         </>

@@ -54,14 +54,6 @@ const QuestionsList = () => {
             link: '/them-cau-hoi'
         },
         {
-            color: 'secondary',
-            isSubmit: false,
-            label: 'Trộn Câu Hỏi',
-            size: 'large',
-            endIcon: LoopIcon,
-            link: '/tron-cau-hoi'
-        },
-        {
             color: 'primary',
             isSubmit: false,
             label: 'Nạp Câu Hỏi',
@@ -71,6 +63,19 @@ const QuestionsList = () => {
         }
 
     ];
+
+    if (questions.length > 5) {
+        actions.push(
+            {
+                color: 'secondary',
+                isSubmit: false,
+                label: 'Trộn Câu Hỏi',
+                size: 'large',
+                endIcon: LoopIcon,
+                link: '/tron-cau-hoi'
+            }
+        );
+    }
 
     return (
         <>
