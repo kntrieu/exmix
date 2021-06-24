@@ -18,6 +18,10 @@ app.use('/api/posts', postsRoute);
 
 app.use(express.static(__dirname + '/www/build/'));
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/www/build/', 'index.html'));
+})
+
 //Connect to db
 mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
 
