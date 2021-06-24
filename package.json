@@ -1,0 +1,26 @@
+{
+  "name": "exmix-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "build-www": "cd www && npm run build",
+    "build-full-www": "cd www && npm install && npm run build",
+    "build": "npm run build-full-www"
+  },
+  "heroku-run-build-script": true,
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.14",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7"
+  }
+}
