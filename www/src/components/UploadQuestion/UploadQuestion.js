@@ -11,8 +11,11 @@ const UploadQuestion = () => {
     const [files, setFiles] = useState([]);
 
     const handleChange = (files) => {
-        let formData = new FormData();
         setFiles(files);
+    }
+
+    const handleSubmit = () => {
+        let formData = new FormData();
         if (files.length > 0) {
             formData.append("file", files[0]);
             distpatch(postFile(formData));
@@ -23,9 +26,11 @@ const UploadQuestion = () => {
         {
             color: 'primary',
             isSubmit: false,
+            onClick: handleSubmit,
             label: 'Thêm Câu Hỏi',
             size: 'large',
             endIcon: AddBoxIcon,
+            isDisable: files.length > 0 ? false : true
         }
     ];
 

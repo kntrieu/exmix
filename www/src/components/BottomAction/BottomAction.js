@@ -43,6 +43,7 @@ const BottomAction = ({actions}) => {
                             <Button type={action.isSubmit ? 'submit' : 'button'}
                                     onClick={action.onClick}
                                     variant="contained"
+                                    disabled={action.isDisable}
                                     color={action.color} size={!matches ? 'small' : action.size} 
                                     startIcon={ action.startIcon ? <action.startIcon /> : null } 
                                     endIcon={ action.endIcon ? <action.endIcon/> : null}>
