@@ -21,3 +21,10 @@ export const updateQuestion = (question) => {
         data: question
     }
 }
+
+export const importQuestion = (questions) => {
+    return {
+        type: 'ADD_QUESTIONS',
+        data: questions
+    }
+}

@@ -1,6 +1,7 @@
 import { setQuestionData, getQuestionData } from '../../utils/localStorageUtils'; 
 
 const initialState = !getQuestionData() ? [] : getQuestionData();
+console.log(initialState);
 
 const QuestionsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -23,6 +24,10 @@ const QuestionsReducer = (state = initialState, action) => {
             //set to local storage
             setQuestionData(state);
             return state;
+        case 'ADD_QUESTIONS':
+            const questions = action.data;
+            setQuestionData([...state, ...questions]);
+            return [...state, ...questions];
         default:
             //set to local storage
             setQuestionData(state);

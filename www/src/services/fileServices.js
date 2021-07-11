@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { importQuestion } from '../actions/Questions';
 
 
 export const fetchArticleDetails = () => {
@@ -18,9 +19,9 @@ export const postFile = (fileData) => {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-        })
-            .then(({ data }) => {
-                console.log(data);
-            });
+        }).then(({ data }) => {
+            dispatch(importQuestion(data));
+            console.log(data);
+        });
     }
 }
