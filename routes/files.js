@@ -9,7 +9,9 @@ router.post('/', async (req, res) => {
     try {
         let data = await textract.fromBufferWithMime(req.files.file.mimetype, req.files.file.data, {preserveLineBreaks: true}, 
             function( error, text ) {
-            const questions = extractQuestionsFromFile(text);
+            const currentId = req.body.currentId ? parseInt(req.body.currentId) : 0;
+            console.log(currentId);
+            const questions = extractQuestionsFromFile(text, currentId);
             res.json(questions);
         });
     } catch (err) {

@@ -1,10 +1,11 @@
-const extractQuestionsFromFile = (fileString) => {
+const extractQuestionsFromFile = (fileString, currentId) => {
     let questions = [];
     let rawArray = fileString.split('[br]');
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (rawArray.length > 0) {
         rawArray.map((rawQues, index) => {
             let rawQuestionAnswers = rawQues.split('\n');
+            
 
             //Remove empty element 
             rawQuestionAnswers = rawQuestionAnswers.filter(function (el) {
@@ -15,7 +16,7 @@ const extractQuestionsFromFile = (fileString) => {
             rawAnswers.shift();
 
             let questionObj = {
-                id: index,
+                id: currentId,
                 content: rawQuestionAnswers[0],
                 answers: []
             };
@@ -37,11 +38,12 @@ const extractQuestionsFromFile = (fileString) => {
                 }
 
                 questionObj.answers.push(answerObj);
-
+            
                 return answer;
             })
 
             questions.push(questionObj);
+            currentId+=1;
         });
     }
 

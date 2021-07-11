@@ -21,7 +21,9 @@ export const postFile = (fileData) => {
             }
         }).then(({ data }) => {
             dispatch(importQuestion(data));
-            console.log(data);
+            window.location.pathname = '/danh-sach-cau-hoi';
+        }).catch(err => {
+            
         });
     }
 }
