@@ -64,7 +64,7 @@ const QuestionsList = () => {
 
     ];
 
-    if (questions.length > 5) {
+    if (questions.length >= 5) {
         actions.push(
             {
                 color: 'secondary',

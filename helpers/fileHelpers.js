@@ -1,49 +1,63 @@
 const extractQuestionsFromFile = (fileString, currentId) => {
+
+    if(!fileString || !currentId) {
+        return [];
+    }
+
     let questions = [];
     let rawArray = fileString.split('[br]');
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (rawArray.length > 0) {
         rawArray.map((rawQues, index) => {
             let rawQuestionAnswers = rawQues.split('\n');
-            
+
 
             //Remove empty element 
             rawQuestionAnswers = rawQuestionAnswers.filter(function (el) {
                 return el.trim() != '';
             });
-            let rawAnswers = [...rawQuestionAnswers];
-            //remove fisrt element (question content)
-            rawAnswers.shift();
 
-            let questionObj = {
-                id: currentId,
-                content: rawQuestionAnswers[0],
-                answers: []
-            };
+            if (rawQuestionAnswers.length >= 2) {
+                let rawAnswers = [...rawQuestionAnswers];
+                //remove fisrt element (question content)
+                rawAnswers.shift();
 
-            rawAnswers.map((answer, no) => {
-                let label = alphabet[no];
-                let id = alphabet[no];
-                let content = answer.trim();
-                let correct = content.indexOf('[d]') >= 0;
-                if(correct) {
-                    content = content.substring(0, content.indexOf('[d]'))
-                }
+                let hasCorrectAnswer = false;
 
-                let answerObj = {
-                    id: id,
-                    label: label,
-                    content: content,
-                    correct: correct
-                }
+                let questionObj = {
+                    id: parseInt(currentId),
+                    content: rawQuestionAnswers[0],
+                    answers: [],
+                    correctAnswer: ''
+                };
 
-                questionObj.answers.push(answerObj);
-            
-                return answer;
-            })
+                rawAnswers.map((answer, no) => {
+                    let label = alphabet[no];
+                    let id = alphabet[no];
+                    let content = answer.trim();
+                    let correct = content.indexOf('[d]') >= 0 && !hasCorrectAnswer;
 
-            questions.push(questionObj);
-            currentId+=1;
+                    if (correct) {
+                        hasCorrectAnswer = true;
+                        content = content.substring(0, content.indexOf('[d]'));
+                        questionObj.correctAnswer = label;
+                    }
+
+                    let answerObj = {
+                        id: id,
+                        label: label,
+                        content: content,
+                        correct: correct
+                    }
+
+                    questionObj.answers.push(answerObj);
+
+                    return answer;
+                })
+
+                questions.push(questionObj);
+                currentId = parseInt(currentId) + 1;
+            }
         });
     }
 

@@ -33,11 +33,11 @@ app.get('/*', function(req, res) {
 //====================================================================================================
 
 //Connect to db ======================================================================================
-mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
-const connection = mongoose.connection;
-connection.once("open", function() {
-  console.log("===== MongoDB database connection established successfully");
-});
+// mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
+// const connection = mongoose.connection;
+// connection.once("open", function() {
+//   console.log("===== MongoDB database connection established successfully");
+// });
 //=====================================================================================================
 
 //Start server ========================================================================================
