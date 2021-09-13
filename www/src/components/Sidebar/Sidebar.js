@@ -2,10 +2,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import HomeIcon from '@material-ui/icons/Home';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import ListIcon from '@material-ui/icons/List';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import HomeIcon from '@material-ui/icons/Home';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -77,7 +77,7 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
                         <ListItemIcon>
                             <ListIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Danh sách câu hỏi" />
+                        <ListItemText primary="Thêm câu hỏi" />
                     </ListItem>
                 </Link>
                 <Link to="/ket-qua-tron" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
@@ -85,10 +85,11 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
                         <ListItemIcon>
                             <DoneAllIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Kết Quả Trộn" />
+                        <ListItemText primary="Xem kết quả" />
                     </ListItem>
                 </Link>
             </List>
+            
         </div>
     );
 

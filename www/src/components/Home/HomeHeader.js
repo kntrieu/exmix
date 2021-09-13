@@ -47,7 +47,7 @@ const HomeHeader = () => {
           <Grid container spacing={3} direction="row" justify="center" alignItems="center">
             <Grid item xs={3}>
               <Link to="/thong-tin-ki-thi" style={{ textDecoration: 'none' }}>
-                <Typography className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary" variant="h5" component="h2">
+                <Typography className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary" variant="h6" component="h6">
                   Bắt Đầu Ngay!
                 </Typography>
               </Link>
