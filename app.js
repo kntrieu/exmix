@@ -29,7 +29,7 @@ app.use('/api/files', filesRoute);
 app.use(express.static(__dirname + '/www/build/'));
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '/www/build/', 'index.html'));
-})
+});
 //====================================================================================================
 
 //Connect to db ======================================================================================
