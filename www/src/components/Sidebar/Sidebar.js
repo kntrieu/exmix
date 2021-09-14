@@ -38,11 +38,17 @@ const useStyles = makeStyles((theme) => ({
       // necessary for content to be below app bar
       toolbar: theme.mixins.toolbar,
       drawerPaper: {
-        width: drawerWidth
+        width: drawerWidth,
+        backgroundColor: '#5DD6C9',
+        border: 'none'
       },
       content: {
         flexGrow: 1,
         padding: theme.spacing(3)
+      },
+      logoContainer: {
+          height: '64px',
+          backgroundColor: theme.palette.primary.main
       }
 }));
 
@@ -52,11 +58,11 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
     const theme = useTheme();
     const drawer = (
         <div>
-            <div className={classes.toolbar}>
-                <img src="/EXMIX_LOGO.png" width="240" height="64" alt="logo"/>
+            <div className={`${classes.toolbar} ${classes.logoContainer}`}>
+                <img src="/EXMIX_LOGO.png" width="240" height="64" alt="Exmix logo - Trộn đề online"/>
             </div>
             <List>
-                <Link to="/" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
                     <ListItem button>
                         <ListItemIcon>
                             <HomeIcon />
@@ -64,7 +70,7 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
                         <ListItemText primary="Trang Chủ" />
                     </ListItem>
                 </Link>
-                <Link to="/thong-tin-ki-thi" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
+                <Link to="/thong-tin-ki-thi" style={{ textDecoration: 'none', color: 'white' }}>
                     <ListItem button>
                         <ListItemIcon>
                             <ImportContactsIcon />
@@ -72,7 +78,7 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
                         <ListItemText primary="Thông Tin Kì Thi" />
                     </ListItem>
                 </Link>
-                <Link to="/danh-sach-cau-hoi" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
+                <Link to="/danh-sach-cau-hoi" style={{ textDecoration: 'none', color: 'white' }}>
                     <ListItem button>
                         <ListItemIcon>
                             <ListIcon />
@@ -80,7 +86,7 @@ const Sidebar = ({isMobileOpenSideBar, handleDrawerToggle}) => {
                         <ListItemText primary="Thêm câu hỏi" />
                     </ListItem>
                 </Link>
-                <Link to="/ket-qua-tron" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>
+                <Link to="/ket-qua-tron" style={{ textDecoration: 'none', color: 'white' }}>
                     <ListItem button>
                         <ListItemIcon>
                             <DoneAllIcon />
