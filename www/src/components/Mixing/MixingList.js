@@ -90,8 +90,8 @@ const MixingList = () => {
                     </Typography>
 
         if (copies.length > 0) {
-            table = <TableContainer component={Paper}>
-                        <Table aria-label="simple table">
+            table = <TableContainer component={Paper} style={{maxHeight: 450}}>
+                        <Table stickyHeader aria-label="Mix result">
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="center">Câu</TableCell>
@@ -107,7 +107,7 @@ const MixingList = () => {
                             <TableBody>
                                 {
                                     copies[0].map((item, index) => (
-                                        <TableRow key={index}>
+                                        <TableRow key={index} hover>
                                             <TableCell align="center">{index + 1}</TableCell>
                                             {
                                                 copies.map((ex, id) => {

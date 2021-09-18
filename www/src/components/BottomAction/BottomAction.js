@@ -31,7 +31,7 @@ const BottomAction = ({actions}) => {
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
-    const cols = 12 / actions.length;
+    const cols = 12 / actions.length; //Chia số cột theo số buttons
 
     return (
         <Box boxShadow={5} className={classes.root + ' ' + ( matches ? classes.marginLeftOut25 : classes.marginLeftOut16)}>

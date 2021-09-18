@@ -35,7 +35,7 @@ export default function ButtonAppBar({handleDrawerToggle}) {
 
   return (
     <div className={classes.root + ' ' + (matches ? classes.mainMargin : '')}>
-      <AppBar position="static" className={classes.header}>
+      <AppBar position="fixed" className={classes.header}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} onClick={handleDrawerToggle} aria-label="menu">
             <MenuIcon />

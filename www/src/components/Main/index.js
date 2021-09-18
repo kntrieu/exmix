@@ -21,12 +21,13 @@ import exmixThemes from '../../theme/theme';
 
 const useStyles = makeStyles((theme) => ({
     mainMargin: {
-        marginTop: '50px',
-        marginLeft: '240px',
+        marginTop: 90,
+        marginLeft: 240,
+        marginBottom: 90,
     },
     root: {
-        marginTop: '50px',
-        marginBottom: '80px'
+        marginTop: 50,
+        marginBottom: 80
     }
 }));
 

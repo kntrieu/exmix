@@ -25,6 +25,9 @@ const useStyles = makeStyles( theme => ({
     table: {
         minWidth: 650,
     },
+    tableContainerHeight: {
+        maxHeight: 450
+    },
     fab: {
         position: 'fixed',
         bottom: theme.spacing(2),
@@ -80,8 +83,8 @@ const QuestionsList = () => {
     return (
         <>
             <Box>
-                <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
+                <TableContainer component={Paper} className={classes.tableContainerHeight}>
+                    <Table stickyHeader className={classes.table} aria-label="question list">
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center">STT</TableCell>
