@@ -26,7 +26,7 @@ const defaultPageMargin = {
 
 
 //Create header paragraph
-const createHeaderParagragph = (id) => {
+export const createHeaderParagragph = (id) => {
     const wizart = getWizartData();
     let headerParagraph = new Paragraph({
         alignment: AlignmentType.LEFT,
@@ -103,7 +103,7 @@ const createHeaderParagragph = (id) => {
     return headerParagraph;
 }
 
-const getLongestAnswer = (answers) => {
+export const getLongestAnswer = (answers) => {
     let longestAnswer = 0;
     answers.map(answer => {
         if(answer.content.length > longestAnswer) {
@@ -117,7 +117,7 @@ const getLongestAnswer = (answers) => {
 }
 
 
-const createAnswerLayout = (answers) => {
+export const createAnswerLayout = (answers) => {
     if (!answers || answers.length === 0) {
         return;
     }
