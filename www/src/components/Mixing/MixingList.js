@@ -37,16 +37,7 @@ const MixingList = () => {
         printCopies(copies, wizart);
     }
 
-    let actions = [
-        {
-            color: 'primary',
-            isSubmit: false,
-            label: 'Nhập câu hỏi',
-            size: 'large',
-            startIcon: ViewListIcon,
-            link: '/danh-sach-cau-hoi'
-        }
-    ];
+    let actions = [];
 
     const fullActions = [
         {
@@ -60,7 +51,7 @@ const MixingList = () => {
         {
             color: 'primary',
             isSubmit: false,
-            label: 'Xuất đề',
+            label: 'In',
             size: 'large',
             endIcon: PrintIcon,
             onClick: printDoc
@@ -68,20 +59,7 @@ const MixingList = () => {
     ];
 
     if (copies.length > 0) {
-        actions = [...actions, ...fullActions];
-    }
-
-    if (questions.length > 5) {
-        actions.push(
-            {
-                color: 'primary',
-                isSubmit: false,
-                label: 'Trộn câu hỏi',
-                size: 'large',
-                startIcon: LoopIcon,
-                link: '/tron-cau-hoi'
-            }
-        )
+        actions = [...fullActions];
     }
 
     const buildTable = (copies) => {

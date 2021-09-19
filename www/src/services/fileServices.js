@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { importQuestion } from '../actions/Questions';
+import { addQuestions } from '../actions/Questions';
 
 
 export const fetchArticleDetails = () => {
@@ -20,7 +20,7 @@ export const postFile = (fileData) => {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(({ data }) => {
-            dispatch(importQuestion(data));
+            dispatch(addQuestions(data));
             window.location.pathname = '/danh-sach-cau-hoi';
         }).catch(err => {
             

@@ -1,7 +1,6 @@
 import { setQuestionData, getQuestionData } from '../../utils/localStorageUtils'; 
 
 const initialState = !getQuestionData() ? [] : getQuestionData();
-console.log(initialState);
 
 const QuestionsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,6 +8,12 @@ const QuestionsReducer = (state = initialState, action) => {
             const newQuestion = action.data;
             state.push(newQuestion);
 
+            //set to local storage
+            setQuestionData(state);
+            return state;
+        case 'DELETE_QUESTION':
+            const index = state.findIndex(item => item.id === action.data);
+            if(index > -1) state.splice(index, 1);
             //set to local storage
             setQuestionData(state);
             return state;

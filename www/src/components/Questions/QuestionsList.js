@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
     Box,
     TablePagination
 } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteQuestion } from '../../actions/Questions';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -37,9 +38,10 @@ const useStyles = makeStyles( theme => ({
   
 const QuestionsList = () => {
     const classes = useStyles();
-    const questions = useSelector( state => state.QuestionsReducer);
+    const [questions, setQuestions] = useState(useSelector( state => state.QuestionsReducer));
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [page, setPage] = React.useState(0);
+    const dispatch = useDispatch();
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -47,11 +49,23 @@ const QuestionsList = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+    const handleDelete = (questionId) => {
+        const index = questions.findIndex(question => question.id === questionId);
+        //dispatch(deleteQuestion(questionId));
+        if (index > -1) {
+            questions.splice(index, 1);
+            const newQuestions = [...questions];
+            dispatch(deleteQuestion(questionId));
+            setQuestions([...newQuestions]);
+        }
+    }
+
     const actions = [
         {
             color: 'primary',
             isSubmit: false,
-            label: 'Thêm Câu Hỏi',
+            label: 'Thêm',
             size: 'large',
             endIcon: AddBoxIcon,
             link: '/them-cau-hoi'
@@ -59,7 +73,7 @@ const QuestionsList = () => {
         {
             color: 'primary',
             isSubmit: false,
-            label: 'Nạp Câu Hỏi',
+            label: 'Nạp',
             size: 'large',
             endIcon: BackupIcon,
             link: '/nap-cau-hoi'
@@ -72,7 +86,7 @@ const QuestionsList = () => {
             {
                 color: 'secondary',
                 isSubmit: false,
-                label: 'Trộn Câu Hỏi',
+                label: 'Trộn',
                 size: 'large',
                 endIcon: LoopIcon,
                 link: '/tron-cau-hoi'
@@ -96,24 +110,24 @@ const QuestionsList = () => {
                         <TableBody>
                             {questions
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((question) => {
+                                .map((question, index) => {
                                 let correctAnswer = question.answers.find(item => item.correct).label + '. ' + question.answers.find(item => item.correct).content;
                                 if (correctAnswer.length > 30) {
                                     correctAnswer = correctAnswer.substr(0, 30) + '...';
                                 }
                                 return (
                                     <TableRow key={question.id}>
-                                        <TableCell width={'10%'} align="center">{question.id + 1}</TableCell>
+                                        <TableCell width={'10%'} align="center">{index + 1}</TableCell>
                                         <TableCell width={'40%'}>
                                             {question.content}
                                         </TableCell>
                                         <TableCell width={'30%'} align="left">{correctAnswer}</TableCell>
                                         <TableCell width={'20%'} align="center">
-                                            <IconButton aria-label="delete" title="Xóa câu hỏi">
+                                            <IconButton aria-label="delete" title="Xóa" onClick={() => {handleDelete(question.id)}}>
                                                 <DeleteIcon fontSize="small" />
                                             </IconButton>
                                             <Link to={`/sua-cau-hoi/${question.id}`}>
-                                                <IconButton aria-label="edit" title="Sửa câu hỏi">
+                                                <IconButton aria-label="edit" title="Sửa">
                                                     <EditIcon fontSize="small" />
                                                 </IconButton>
                                             </Link>

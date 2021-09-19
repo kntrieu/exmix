@@ -5,6 +5,13 @@ export const addNewQuestion = (question) => {
     }
 }
 
+export const deleteQuestion = (questionId) => {
+    return {
+        type: 'DELETE_QUESTION',
+        data: questionId
+    }
+}
+
 export const getQuestion = (id, isLogged) => {
     return {
         type: 'GET_QUESTION',
@@ -22,7 +29,7 @@ export const updateQuestion = (question) => {
     }
 }
 
-export const importQuestion = (questions) => {
+export const addQuestions = (questions) => {
     return {
         type: 'ADD_QUESTIONS',
         data: questions
