@@ -172,6 +172,8 @@ const QuestionFormItem = ({questionObj , onChangeQuestionContent, onChangeQuesti
                     <TextValidator
                         fullWidth
                         validators={['required']}
+                        multiline
+                        minRows={3}
                         errorMessages={['Bạn cần phải nhập nội dung câu hỏi']}
                         value={questionContent}
                         label={`Nhập nội dung câu hỏi ${questionObj.id + 1}`}

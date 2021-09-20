@@ -223,7 +223,6 @@ export const createAnswerLayout = (answers) => {
 }
 
 export const printCopies = (copies, wizartData) => {
-
     if (!copies || copies.length === 0 || !wizartData) {
         return;
     }
@@ -256,22 +255,36 @@ export const printCopies = (copies, wizartData) => {
         };
 
         copy.map((quest, indexOfQuestion) => {
-
+            let contents = quest.content.trim().split('\n');
             let questionNumber = new TextRun({
                 ...textConfig,
                 text: `Câu ${indexOfQuestion + 1}:`,
                 bold: true,
-                underline: true
+                underline: true,
             });
 
-            let questionContent = new TextRun({
-                text: ' ' + quest.content.trim(),
-                ...textConfig
-            });
+            let questionContents = [];
+
+            if (contents.length < 2) {
+                let questionContent = new TextRun({
+                    text: ' ' + contents[0],
+                    ...textConfig
+                });
+                questionContents.push(questionContent)
+            } else {
+                for (let i = 0; i < contents.length; i++) {
+                    let questionContent = new TextRun({
+                        text: ' ' + contents[i],
+                        ...textConfig,
+                        break: 1
+                    });
+                    questionContents.push(questionContent);
+                }
+            }
 
             let paragraph = new Paragraph({
-                alignment: AlignmentType.JUSTIFIED,
-                children: [questionNumber, questionContent]
+                alignment: contents.length > 1 ? AlignmentType.LEFT : AlignmentType.JUSTIFIED,
+                children: [questionNumber, ...questionContents]
             });
 
             section.children.push(paragraph);
