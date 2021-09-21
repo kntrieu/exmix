@@ -1,0 +1,312 @@
+[
+    {
+        "id": 0,
+        "content": "Cuộc khởi nghĩa Hai Bà Trưng nổ ra vào thời gian nào?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Mùa xuân năm 39.",
+                "correct": false
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Mùa xuân năm 40.",
+                "correct": true
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Mùa xuân năm 41.",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Mùa xuân năm 42.",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "B"
+    },
+    {
+        "id": 1,
+        "content": "Để không bị phát hiện khi thua trận chạy về Tô Định đã làm gì?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Cạo râu.",
+                "correct": false
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Chui vào ống cống.",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Cắt tóc.",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Cắt tóc, cạo râu.",
+                "correct": true
+            }
+        ],
+        "correctAnswer": "D"
+    },
+    {
+        "id": 2,
+        "content": "Chính quyền đô hộ đã làm gì để đồng hóa nhân dân ta?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Mở trường dạy học.",
+                "correct": false
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Truyền vào nước ta Nho giáo, Phật giáo, Đạo giáo và phong tục của người Hán.",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Mở trường dạy học chữ Hán. Truyền vào nước ta Nho giáo, Phật giáo, Đạo giáo và phong tục của người Hán.",
+                "correct": true
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Đào tạo quan lại người Việt phục vụ cho chính quyền đô hộ.",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "C"
+    },
+    {
+        "id": 3,
+        "content": "Lý Bí phất cờ khởi nghĩa vào năm?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Mùa xuân năm 542.",
+                "correct": true
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Mùa xuân năm 544.",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Mùa xuân năm 543.",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Mùa xuân năm 555.",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "A"
+    },
+    {
+        "id": 4,
+        "content": "Năm 544 Lý Bí lên ngôi hoàng đế và đặt tên nước là.",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Nam Việt",
+                "correct": false
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Đại Việt",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Việt Nam",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Vạn Xuân",
+                "correct": true
+            }
+        ],
+        "correctAnswer": "D"
+    },
+    {
+        "id": 5,
+        "content": "Lí Bí   xây dựng kinh đô ở đâu?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Sông Tô Lịch",
+                "correct": true
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Sông Bạch Đằng",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Sông Hồng",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Sông Lô",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "A"
+    },
+    {
+        "id": 6,
+        "content": "Tại sao nhà Đường cho sửa sang các đường giao thông thủy, bộ?",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Để cho người Hán qua bóc lột nhân dân ta.",
+                "correct": false
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Để dễ kiểm soát siết chặt ách đô hộ và đàn áp phong trào của nhân dân.",
+                "correct": true
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Để cho nhân dân ta thuận tiện đi lại.",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Để siết chặt bộ máy cai trị.",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "B"
+    },
+    {
+        "id": 7,
+        "content": "Nhà Hán đã độc quyền về: ",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Thuế muối và thuế sắt.",
+                "correct": true
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Thuế rau",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Thuế gạo.",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Thuế thuốc phiện.",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "A"
+    },
+    {
+        "id": 8,
+        "content": "Đây là nội dung câu 9",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "Đáp án đúng",
+                "correct": true
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "Đáp án chưa đúng",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "Đáp án sai",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "Đáp án trật lất",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "A"
+    },
+    {
+        "id": 9,
+        "content": "Đây là nội dung câu 10\nNhiều dòng nè\nNhiều dòng nè\nNhiều dòng nè\nNhiều dòng nè",
+        "answers": [
+            {
+                "id": "A",
+                "label": "A",
+                "content": "A gfgfg",
+                "correct": true
+            },
+            {
+                "id": "B",
+                "label": "B",
+                "content": "gfgfgfg",
+                "correct": false
+            },
+            {
+                "id": "C",
+                "label": "C",
+                "content": "fgfgfg",
+                "correct": false
+            },
+            {
+                "id": "D",
+                "label": "D",
+                "content": "fgfgfgfg",
+                "correct": false
+            }
+        ],
+        "correctAnswer": "A"
+    }
+]

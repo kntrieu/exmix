@@ -8,7 +8,7 @@
     "build-www": "cd www && npm run build",
     "build-full-www": "cd www && npm install && npm run build",
     "build": "npm run build-full-www",
-    "test": "jest"
+    "test": "jest && cd www && npm run test" 
   },
   "heroku-run-build-script": true,
   "author": "",
@@ -30,5 +30,8 @@
   "devDependencies": {
     "husky": "^7.0.2",
     "jest": "26.6.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["www"]
   }
 }

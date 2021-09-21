@@ -1,6 +1,11 @@
 import { ALPHABET_STRING } from './constants';
 
 export const shuffleIds = (questions) => {
+
+    if (!questions) {
+        return [];
+    }
+
     let array = questions.map(question => question.id);
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -21,6 +26,11 @@ export const shuffleIds = (questions) => {
 }
 
 export const shuffleAnswers = (ques) => {
+    
+    if (!ques) {
+        return null;
+    }
+
     let question = JSON.parse(JSON.stringify(ques));
     var currentIndex = question.answers.length, temporaryValue, randomIndex;
 
